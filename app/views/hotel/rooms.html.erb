@@ -1,0 +1,77 @@
+
+<!-- Parallax Effect -->
+<script type="text/javascript">$(document).ready(function(){$('#parallax-pagetitle').parallax("50%", -0.55);});</script>
+
+<section class="parallax-effect">
+  <div id="parallax-pagetitle" style="background-image: url(/assets/parallax/parallax-01.jpg);">
+    <div class="color-overlay"> 
+      <!-- Page title -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active">Rooms list view</li>
+            </ol>
+            <h1>Rooms list view</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="nav nav-pills" id="filters">
+        <li class="active"><a href="#" data-filter="*">All</a></li>
+        <% HotelCategory.all.each do |hotel_category| %>
+          <li><a href="#" data-filter=".category_<%= hotel_category.id%>"><%= hotel_category.sort_name %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Rooms -->
+<section class="rooms mt100">
+  <div class="container">
+    <div class="row room-list fadeIn appear"> 
+      <% HotelRoom.all.each do |hotel_room| %>
+        <!-- Room -->
+        <div class="col-sm-4 category_<%= hotel_room.hotel_category.id%>">
+          <div class="room-thumb"> <img src="/assets/rooms/room-01.jpg" alt="room 1" class="img-responsive" />
+            <div class="mask">
+              <div class="main">
+                <h5><%= hotel_room.hotel_category.name %>, <i>Room: <%= hotel_room.name %></i></h5>
+                <div class="price">&#x20B9; <%= hotel_room.hotel_category.price %><span>a night</span></div>
+              </div>
+              <div class="content">
+                <p><span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. 
+                  malesuada metus.</p>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                      <li><i class="fa fa-check-circle"></i> Private balcony</li>
+                      <li><i class="fa fa-check-circle"></i> Sea view</li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6">
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
+                      <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                      <li><i class="fa fa-check-circle"></i> Bathroom</li>
+                    </ul>
+                  </div>
+                </div>
+                <a href="<%= new_hotel_category_booking_path(hotel_room.hotel_category) %>" class="btn btn-primary btn-block">Book Now</a> </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

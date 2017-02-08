@@ -1,0 +1,17 @@
+  <div class="wrapper">
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
+        <h2>Please Log in</h2>
+        <%= devise_error_messages! %>
+        <%= f.text_field :email, placeholder:"Email", class: "form-control" %>
+        <%= f.password_field :password, placeholder:"Password", class: "form-control margin-bottom" %>
+        <% if devise_mapping.rememberable? -%>
+          <label class="checkbox">
+            <%= f.check_box :remember_me %> Remember me
+          </label>
+        <% end -%>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>   
+    <% end %>
+
+  </div>
+<%= render "users/shared/links" %>
